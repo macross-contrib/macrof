@@ -18,7 +18,7 @@ import (
 
 func hello() macross.Handler {
 	return func(c *macross.Context) error {
-		return c.String(200, "Hello, World!\n")
+		return c.String(macross.StatusOK, "Hello, World!\n")
 	}
 }
 
