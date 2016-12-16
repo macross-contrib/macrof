@@ -17,19 +17,19 @@ import (
 )
 
 func hello() macross.Handler {
-	return func(c *macross.Context) error {
-		return c.String(macross.StatusOK, "Hello, World!\n")
+	return func(self *macross.Context) error {
+		return self.String("Hello, World!\n")
 	}
 }
 
 func main() {
-    e := macross.New()
-    e.Get("/", hello())
+    m := macross.New()
+    m.Get("/", hello())
 
     // automatically add routers for net/http/pprof
     // e.g. /debug/pprof, /debug/pprof/heap, etc.
-    macrof.Wrapper(e)
-    e.Run(":8080")
+    macrof.Wrapper(m)
+    m.Listen(":8080")
 }
 ```
 Start this server, and now visit http://127.0.0.1:8080/debug/pprof/ and you'll see what you want.
